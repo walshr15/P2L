@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { ImagePicker } from 'expo';
 
 
@@ -25,15 +25,16 @@ export default class App extends React.Component {
 
     _pickImage = async () => {
     	let result = await ImagePicker.launchImageLibraryAsync({
-    		allowsEditing: true,
-    		aspect: [4, 3],
+    		// allowsEditing: true,
+    		// aspect: [4, 3],
+    		exif: true,
     	});
 
-    	console.log(result);
+    	console.log(result.exif);
 
-    	//if (!result.cancelled) {
-    	//	this.setState({ image: result.uri });
-    	//}
+    	if (!result.cancelled) {
+    		this.setState({ image: result.uri });
+    	}
 
     };
 }
