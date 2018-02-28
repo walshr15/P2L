@@ -2,6 +2,8 @@ import React from 'react';
 import { Alert, Button, Image, StyleSheet, Text, View } from 'react-native';
 import { ImagePicker } from 'expo';
 
+import { Actions } from 'react-native-router-flux';
+
 
 export default class Home extends React.Component {
 	state = {
@@ -49,6 +51,7 @@ export default class Home extends React.Component {
     			}
     		else{
     			console.log(lat + ' ' + long);
+    			// Actions.mapscreen({});
     		}
     	}
     }
@@ -71,9 +74,6 @@ export default class Home extends React.Component {
 }
 
 
-
-
-
 var styles = StyleSheet.create({
   select: {
     backgroundColor: '#fff',
@@ -88,3 +88,8 @@ var styles = StyleSheet.create({
   },
 
 });
+
+
+
+
+// export default Home;
