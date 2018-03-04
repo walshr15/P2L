@@ -4,10 +4,10 @@ import { ImagePicker } from 'expo';
 
 import { Actions } from 'react-native-router-flux';
 
-
-export default class Home extends React.Component {
+class Home extends React.Component {
 	state = {
          image: null,
+         // name:'',
     };
 
     render() {
@@ -31,7 +31,7 @@ export default class Home extends React.Component {
 
     findCoordinates = (meta) =>{
     	var exif = meta;
-    	// console.log(exif);
+    	console.log(exif);
 
     	this.contains(exif);
 
@@ -40,7 +40,9 @@ export default class Home extends React.Component {
     contains = (arr) =>{
     	// console.log(arr);
     	lat = arr["GPSLatitude"];
+    	latRef = arr["GPSLatitudeRef"];
     	long = arr["GPSLongitude"];
+    	longRef = arr["GPSLongitudeRef"]
     	if (lat==null){
     		console.log('No GPS tag found');
     		alert('No GPS tag attached');
@@ -50,8 +52,16 @@ export default class Home extends React.Component {
     				alert('No GPS tag attached');
     			}
     		else{
-    			console.log(lat + ' ' + long);
-    			// Actions.mapscreen({});
+    			if (latRef == "S"){
+    				lat *= -1;
+    			}
+
+    			if (longRef == "W"){
+    				long *= -1;
+    			}
+
+    			// console.log(lat + ' ' + long);
+    			Actions.mapscreen({ latitude: lat,  latitudeRef: latRef, longitude:long, longitudeRef: longRef,});
     		}
     	}
     }
@@ -92,4 +102,4 @@ var styles = StyleSheet.create({
 
 
 
-// export default Home;
+export default Home;
