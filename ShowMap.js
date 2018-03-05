@@ -12,6 +12,9 @@ const LONG_DELTA = 0.01;
 
 
 class ShowMap extends React.Component {
+	constructor(props){
+		super(props)
+
 	state = {
 		// latitude: '', latitudeRef: '', longitude: '', longitudeRef: '',
 		// destinationLat: '',
@@ -24,11 +27,15 @@ class ShowMap extends React.Component {
 		initialPosition: {
 			latitude: '',
 			longitude: '',
+			latitudeDelta: '',
+			longitudeDelta: '',
 		},
 
 		markerPosition: {
 			latitude: '',
 			longitude: '',
+			latitudeDelta: '',
+			longitudeDelta: '',
 		},
 
 
@@ -42,19 +49,22 @@ class ShowMap extends React.Component {
 		// destination = {latitude: this.props.destinationLat, longitude: this.props.destinationLong};
 
 	}
+}
 
 	watchID: ?number = null;
 
 	// const LAT_DELTA = 0.01;
 	// const LONG_DELTA = 0.01;
 
-	componentWillMount() {
-		this.props.origin = {latitude: this.props.userLat, longitude: this.props.userLong};
-		this.props.destination = {latitude: this.props.destinationLat, longitude: this.props.destinationLong};
-		// console.log(this.props.destinationLat);
-	}
+	// componentWillMount() {
+	// 	this.props.origin = {latitude: this.props.userLat, longitude: this.props.userLong};
+	// 	this.props.destination = {latitude: this.props.destinationLat, longitude: this.props.destinationLong};
+	// 	// console.log(this.props.destinationLat);
+	// }
 
 	componentDidMount() {
+		this.props.origin = {latitude: this.props.userLat, longitude: this.props.userLong};
+		this.props.destination = {latitude: this.props.destinationLat, longitude: this.props.destinationLong};
 		navigator.geolocation.getCurrentPosition((position) => {
 			var lat = parseFloat(position.coords.latitude)
 			var long = parseFloat(position.coords.longitude)
