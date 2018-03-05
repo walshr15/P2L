@@ -31,7 +31,7 @@ class Home extends React.Component {
 
     findCoordinates = (meta) =>{
     	var exif = meta;
-    	console.log(exif);
+    	// console.log(exif);
 
     	this.contains(exif);
 
