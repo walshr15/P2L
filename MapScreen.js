@@ -40,8 +40,8 @@ class MapScreen extends React.Component {
 			   	   Actions.showmap({
 			   	   	destinationLat: this.props.latitude,
 			   	   	destinationLong: this.props.longitude,
-			   	   	userLat: parseFloat(this.userLatitude),
-			   	   	userLong: parseFloat(this.userLongitude),
+			   	   	// userLat: parseFloat(this.userLatitude),
+			   	   	// userLong: parseFloat(this.userLongitude),
 			   	   });
 			   }
 			}>   

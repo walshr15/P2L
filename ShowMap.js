@@ -15,32 +15,33 @@ class ShowMap extends React.Component {
 	constructor(props){
 		super(props)
 
-	state = {
+	this.state = {
 		// latitude: '', latitudeRef: '', longitude: '', longitudeRef: '',
-		// destinationLat: '',
-		// destinationLong: '',
+		destinationLat: '',
+		destinationLong: '',
 		// userLat: '',
 		// userLong: '',
-		// origin: '',
+		origin: '',
 		// destination:'',
 
 		initialPosition: {
-			latitude: '',
-			longitude: '',
-			latitudeDelta: '',
-			longitudeDelta: '',
+			latitude: 0,
+			longitude: 0,
+			latitudeDelta: 0,
+			longitudeDelta: 0,
 		},
 
 		markerPosition: {
-			latitude: '',
-			longitude: '',
-			latitudeDelta: '',
-			longitudeDelta: '',
+			latitude: 0,
+			longitude: 0,
+			latitudeDelta: 0,
+			longitudeDelta: 0,
 		},
 
-
-		// origin: [this.props.userLat, this.props.userLong],
-		// destination: [this.props.destinationLat, this.props.destinationLong],
+		destinationPosition: {
+			destLat: 0,
+		    destLong: 0,
+		},
 
 		// origin: [50.0, -8.0],
 		// destination: [this.props.destinationLat, this.props.destinationLong],
@@ -56,18 +57,15 @@ class ShowMap extends React.Component {
 	// const LAT_DELTA = 0.01;
 	// const LONG_DELTA = 0.01;
 
-	// componentWillMount() {
-	// 	this.props.origin = {latitude: this.props.userLat, longitude: this.props.userLong};
-	// 	this.props.destination = {latitude: this.props.destinationLat, longitude: this.props.destinationLong};
-	// 	// console.log(this.props.destinationLat);
-	// }
 
 	componentDidMount() {
-		this.props.origin = {latitude: this.props.userLat, longitude: this.props.userLong};
-		this.props.destination = {latitude: this.props.destinationLat, longitude: this.props.destinationLong};
+
+		
+
 		navigator.geolocation.getCurrentPosition((position) => {
 			var lat = parseFloat(position.coords.latitude)
 			var long = parseFloat(position.coords.longitude)
+			// console.log(lat + " " + long)
 
 		var initialRegion = {
 			latitude: lat,
@@ -80,6 +78,7 @@ class ShowMap extends React.Component {
 
 		this.setState({initialPosition:initialRegion})
 		this.setState({markerPosition:initialRegion})
+		// console.log(this.state.initialPosition)
 
 		},
 
@@ -89,6 +88,7 @@ class ShowMap extends React.Component {
 		this.watchID = navigator.geolocation.watchPosition((position) => {
 			var lat = parseFloat(position.coords.latitude)
 			var long = parseFloat(position.coords.longitude)
+			// console.log(lat + " " + long)
 
 			var lastRegion = {
 				latitude: lat,
@@ -130,18 +130,23 @@ class ShowMap extends React.Component {
 		   	latitude: this.props.destinationLat,
 		   	longitude: this.props.destinationLong,
 		   }}
+		   	
+		
 
 		   title={'Photo was taken here'}
-		   description={this.props.destinationLat + ' ' + this.props.destinationLong}
-		   />
+		   
+		   ></MapView.Marker>
 		   
 		   <MapViewDirections
-		   origin={this.props.origin}
-		   destination={this.props.destination}
+		   origin={this.state.initialPosition}
+		   destination={{
+		   	latitude: this.props.destinationLat,
+		   	longitude: this.props.destinationLong,
+		   }}
 		   apikey={GOOGLE_MAPS_APIKEY}
-		   strokeWidth={3}
+		   strokeWidth={5}
 		   strokeColor="hotpink"
-		   />   
+		   />
 	        </MapView>
 
 	        
