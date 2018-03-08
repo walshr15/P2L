@@ -42,7 +42,7 @@ class Home extends React.Component {
     	lat = arr["GPSLatitude"];
     	latRef = arr["GPSLatitudeRef"];
     	long = arr["GPSLongitude"];
-    	longRef = arr["GPSLongitudeRef"]
+    	longRef = arr["GPSLongitudeRef"];
     	if (lat==null){
     		console.log('No GPS tag found');
     		alert('No GPS tag attached');
@@ -69,7 +69,7 @@ class Home extends React.Component {
 
     _pickImage = async () => {
     	let result = await ImagePicker.launchImageLibraryAsync({
-    		allowsEditing: true,
+    		// allowsEditing: true,
     		aspect: [4, 3],
     		exif: true,
     	});

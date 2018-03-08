@@ -5,7 +5,7 @@ import { ImagePicker } from 'expo';
 
 import Home from './Home';
 import MapScreen from './MapScreen';
-import ShowMap from './ShowMap';
+// import ShowMap from './ShowMap';
 
 import {
 	Router,
@@ -21,7 +21,7 @@ class App extends React.Component {
 			  <Scene key = 'root'>
 			    <Scene key='home' component={Home} title='Home'/>
 			    <Scene key='mapscreen' component={MapScreen} title='MapScreen'/>
-			    <Scene key='showmap' component={ShowMap} title='ShowMap'/>
+			    {/*<Scene key='showmap' component={ShowMap} title='ShowMap'/>*/}
 			    </Scene>
 			</Router>
 		);
