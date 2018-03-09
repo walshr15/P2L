@@ -20,7 +20,7 @@ class App extends React.Component {
 			<Router>
 			  <Scene key = 'root'>
 			    <Scene key='home' component={Home} title='Home'/>
-			    <Scene key='mapscreen' component={MapScreen} title='MapScreen'/>
+			    <Scene key='mapscreen' component={MapScreen} title='Photo Location'/>
 			    {/*<Scene key='showmap' component={ShowMap} title='ShowMap'/>*/}
 			    </Scene>
 			</Router>
