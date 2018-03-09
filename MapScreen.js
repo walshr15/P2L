@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Platform, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Button, Platform, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Constants, Location, Permissions } from 'expo';
 import { Actions } from 'react-native-router-flux';
-import getDirections from 'react-native-google-maps-directions';
+import { getDirections } from 'react-native-google-maps-directions';
 
 
 
@@ -49,11 +49,15 @@ class MapScreen extends React.Component {
 		// console.log(this.props.longitude);
 		return(
 		<View style={styles.container}>
-		<Text>
+		    <Image style={styles.image}
+    		      source={require('./p2lsmaller.png')} />
+    		<Text> </Text>	
+    		<Text> </Text>     
+    		<Text>
 	 		  Photo was taken at {this.props.latitude} {this.props.longitude}.
 	 		   Make sure to turn on location services for directions!
-	 	</Text>
-        <Button onPress={this.handleGetDirections} title="Open Map" />
+	 		</Text>
+	 		<Button onPress={this.handleGetDirections} title="Open Map" />
       </View>
       );
 	}
@@ -81,18 +85,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
+    backgroundColor: "white",
   },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    textAlign: 'center',
+
+  image: {
+  	flex: 0,
+  	// width: ,
+  	// height: ,
+  	resizeMode: 'contain',
   },
-  buttonText: {
-  	marginLeft: 20,
-  	fontSize: 20,
-  	textAlign: 'center',
-  }
+
 });
 
 export default MapScreen;

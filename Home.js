@@ -11,18 +11,20 @@ class Home extends React.Component {
 
     render() {
     	var { image } = this.state;
-    	var var1 = null;
-    	var var2 = null;
-
 
     	return (
     		<View style={styles.background}>
+    		    <Image style={styles.image}
+    		          source={require('./p2l.png')} />
+    		    <Text> </Text>
+    		    <Text> </Text>
+
     		    <Button style={styles.button}
     		        title="Pick an image from camera roll"
     		        onPress={this._pickImage}
     		    />
     		    {image &&
-    		    	<Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+    		    	<Image source={{ uri: image }} style={{ width: 150, height: 150 }} />}
     		</View>
 
     	);
@@ -84,19 +86,19 @@ class Home extends React.Component {
 
 
 var styles = StyleSheet.create({
-  select: {
-    backgroundColor: '#fff',
-    marginTop:30,
-    fontSize:20,
-    textAlign: 'center',
-    //*justifyContent: 'center',
-  },
+  // select: {
+  //   backgroundColor: '#fff',
+  //   marginTop:30,
+  //   fontSize:20,
+  //   textAlign: 'center',
+  //   //*justifyContent: 'center',
+  // },
 
   background: {
   	backgroundColor: "white",
   	flex: 1, 
   	alignItems: 'center', 
-  	justifyContent: 'center' 
+  	justifyContent: 'center', 
   },
 
   button: {
@@ -106,6 +108,13 @@ var styles = StyleSheet.create({
   	borderRadius: 5,
   	borderWidth: 1,
   	borderColor: '#000033',
+  },
+
+  image: {
+  	flex: 0,
+  	// width: ,
+  	// height: ,
+  	resizeMode: 'contain',
   },
 
 });
