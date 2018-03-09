@@ -7,7 +7,6 @@ import { Actions } from 'react-native-router-flux';
 class Home extends React.Component {
 	state = {
          image: null,
-         // name:'',
     };
 
     render() {
@@ -17,8 +16,8 @@ class Home extends React.Component {
 
 
     	return (
-    		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    		    <Button
+    		<View style={styles.background}>
+    		    <Button style={styles.button}
     		        title="Pick an image from camera roll"
     		        onPress={this._pickImage}
     		    />
@@ -45,11 +44,11 @@ class Home extends React.Component {
     	longRef = arr["GPSLongitudeRef"];
     	if (lat==null){
     		// console.log('No GPS tag found');
-    		alert('No GPS tag attached');
+    		Alert.alert('Photo Selection Invalid', 'No GPS info attached to photo.');
     		}else{
     			if (long==null){
     				// console.log('No GPS tag found');
-    				alert('No GPS tag attached');
+    				Alert.alert('Photo Selection Invalid', 'No GPS tag attached.');
     			}
     		else{
     			if (latRef == "S" && lat>=0){
@@ -60,8 +59,8 @@ class Home extends React.Component {
     				long *= -1;
     			}
 
-    			console.log(lat + ' ' + long);
-    			Actions.mapscreen({ latitude: lat,  latitudeRef: latRef, longitude:long, longitudeRef: longRef,});
+    			// console.log(lat + ' ' + long);
+    			Actions.mapscreen({ latitude: lat, longitude:long, });
     		}
     	}
     }
@@ -93,8 +92,20 @@ var styles = StyleSheet.create({
     //*justifyContent: 'center',
   },
 
-  background:{
-  	backgroundColor: '#fff',
+  background: {
+  	backgroundColor: "white",
+  	flex: 1, 
+  	alignItems: 'center', 
+  	justifyContent: 'center' 
+  },
+
+  button: {
+  	// backgroundColor: "white",
+  	// color: "blue"
+  	backgroundColor: '#99AAFF',
+  	borderRadius: 5,
+  	borderWidth: 1,
+  	borderColor: '#000033',
   },
 
 });

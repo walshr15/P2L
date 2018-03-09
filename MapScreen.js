@@ -8,7 +8,7 @@ import getDirections from 'react-native-google-maps-directions';
 
 class MapScreen extends React.Component {
 	state = {
-		latitude: '', latitudeRef: '', longitude: '', longitudeRef: '',
+		latitude: '', longitude: '',
 		userLatitude:'', userLongitude:'',
 	}
 
@@ -39,12 +39,6 @@ class MapScreen extends React.Component {
 		// 		errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
 		// 	});
 		// } else {
-			// console.log(this.props.longitudeRef);
-			// if (this.props.longitudeRef == "W") {
-			// 	console.log(this.props.longitude);
-			// 	this.props.longitude *= -1;
-			// 	console.log(this.props.longitude);
-			// }
 			this._getLocationAsync();
 		// }
 	}
@@ -73,37 +67,8 @@ class MapScreen extends React.Component {
 		}
 
 		let location = await Location.getCurrentPositionAsync({});
-		// console.log(location);
 		this.props.userLatitude = location.coords.latitude;
-		this.props.userLongitude = location.coords.longitude;
-
-
-		// console.log(location);
-		// console.log(location.coords.latitude);
-		// console.log(location.coords.longitude);
-		// var3 = JSON.stringify(location);
-		// // console.log(var3);
-		// var4 = var3.split(",");
-		// // console.log(var4);
-		// for (let i = 0; i < var4.length; i++) {
-		// 	if (var4[i].includes('latitude')){
-		// 		this.userLatitude = var4[i];
-		// 		// console.log(this.userLatitude);
-		// 		this.userLatitude = this.userLatitude.split(":");
-		// 		this.userLatitude = this.userLatitude[1];
-		// 		// console.log(this.userLatitude);
-		// 	}
-		// 	if (var4[i].includes('longitude')){
-		// 		this.userLongitude = var4[i];
-		// 		// console.log(this.userLongitude);
-		// 		this.userLongitude = this.userLongitude.split(":");
-		// 		this.userLongitude = this.userLongitude[1];
-		// 		// console.log(this.userLongitude);
-		// 	}
-		// }
-			
-		this.setState({ location });
-		// console.log(location);
+		this.props.userLongitude = location.coords.longitude;		
 
 		
 	};
