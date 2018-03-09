@@ -39,6 +39,12 @@ class MapScreen extends React.Component {
 		// 		errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
 		// 	});
 		// } else {
+			// console.log(this.props.longitudeRef);
+			// if (this.props.longitudeRef == "W") {
+			// 	console.log(this.props.longitude);
+			// 	this.props.longitude *= -1;
+			// 	console.log(this.props.longitude);
+			// }
 			this._getLocationAsync();
 		// }
 	}

@@ -44,23 +44,23 @@ class Home extends React.Component {
     	long = arr["GPSLongitude"];
     	longRef = arr["GPSLongitudeRef"];
     	if (lat==null){
-    		console.log('No GPS tag found');
+    		// console.log('No GPS tag found');
     		alert('No GPS tag attached');
     		}else{
     			if (long==null){
-    				console.log('No GPS tag found');
+    				// console.log('No GPS tag found');
     				alert('No GPS tag attached');
     			}
     		else{
-    			if (latRef == "S"){
+    			if (latRef == "S" && lat>=0){
     				lat *= -1;
     			}
 
-    			if (longRef == "W"){
+    			if (longRef == "W" && long>=0){
     				long *= -1;
     			}
 
-    			// console.log(lat + ' ' + long);
+    			console.log(lat + ' ' + long);
     			Actions.mapscreen({ latitude: lat,  latitudeRef: latRef, longitude:long, longitudeRef: longRef,});
     		}
     	}
