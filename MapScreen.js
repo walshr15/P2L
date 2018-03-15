@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Platform, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Button, Dimensions, Platform, Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Constants, Location, Permissions } from 'expo';
 import { Actions } from 'react-native-router-flux';
-import { getDirections } from 'react-native-google-maps-directions';
+import getDirections from 'react-native-google-maps-directions';
 
-
+const DEVICE_DIMENSIONS = Dimensions.get('window');
 
 class MapScreen extends React.Component {
 	state = {
@@ -45,21 +45,38 @@ class MapScreen extends React.Component {
 
 
 	render() {
-		// console.log(this.props.latitude);
-		// console.log(this.props.longitude);
+
+		if (DEVICE_DIMENSIONS.height < 600 && DEVICE_DIMENSIONS.width < 340) {
+			return(
+				<View style={styles.container}>
+				   <Image style={styles.image}
+				         source={require('./assets/images/p2lsmaller.png')} />
+				   <Text> </Text>	     
+				   <Text style={{fontSize: 8, margin: 8}}>
+				     Photo was taken at ({this.props.latitude}, {this.props.longitude}).
+				     Make sure that you have an active internet connection and to turn on location services for directions!
+				   </Text>
+				   <Text> </Text>
+				   <Button onPress={this.handleGetDirections} title="Open Map" />
+    		   </View>
+    		);
+		}
+
 		return(
-		<View style={styles.container}>
-		    <Image style={styles.image}
-    		      source={require('./p2lsmaller.png')} />
-    		<Text> </Text>	
-    		<Text> </Text>     
-    		<Text>
-	 		  Photo was taken at {this.props.latitude} {this.props.longitude}.
-	 		   Make sure to turn on location services for directions!
-	 		</Text>
-	 		<Button onPress={this.handleGetDirections} title="Open Map" />
-      </View>
-      );
+		   <View style={styles.container}>
+		       <Image style={styles.image}
+    		      source={require('./assets/images/p2lsmaller.png')} />
+    		   <Text> </Text>	
+    		   <Text> </Text>     
+    		   <Text style={{margin: 8}}>
+    		     Photo was taken at ({this.props.latitude}, {this.props.longitude}).
+    		     Make sure that you have an active internet connection and to turn on location services for directions!
+    		   </Text>
+    		   <Text> </Text> 
+    		   <Button onPress={this.handleGetDirections} title="Open Map" />
+    		</View>
+    	);
+
 	}
 
 	_getLocationAsync = async () => {
@@ -90,8 +107,6 @@ const styles = StyleSheet.create({
 
   image: {
   	flex: 0,
-  	// width: ,
-  	// height: ,
   	resizeMode: 'contain',
   },
 

@@ -1,6 +1,43 @@
 {
   "expo": {
+  	"name": "Photo2Location",
+  	"description": "Final year project - Photo2Location. An application that allows opening a photo in that app, and then the app displays the location of the photo on a map, and guides you there.",
     "sdkVersion": "25.0.0",
-    "icon": "appicon.png",
+    "slug": "photo2location",
+    "version": "1.0.0",
+    "platforms": ["ios", "android"],
+    "githubUrl": "https://github.com/walshr15/P2L",
+    "icon": "assets/images/appicon.png",
+    "orientation": "portrait",
+
+    "splash": {
+    	"image": "assets/images/splashscreen.png",
+    	"resizeMode": "contain"
+    },
+
+    "assetBundlePatterns": [
+    	"assets/images/*"
+    ],
+
+    "ios": {
+    	"bundleIdentifier": "ie.tcd.walshr15.photo2location",
+    	"loadJSInBackgroundExperimental": true,
+    	"buildNumber": "1.0.0",
+    	"infoPlist": {
+    		"Expo.Permissions.LOCATION": "This app uses the user's location in order to give them directions on Google Maps."
+    },
+    },
+
+    "android": {
+    	"package": "ie.tcd.walshr15.photo2location",
+    	"versionCode": 1.0,
+    },
+
+    "androidStatusBar": {
+      "backgroundColor": "#C2185B"
+    },
+
+    "primaryColor": "#ffffff",
+
   }
 }
