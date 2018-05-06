@@ -1,15 +1,18 @@
 import React from 'react';
 import { Alert, Dimensions, Button, Image, StyleSheet, Text, View } from 'react-native';
-import { Asset, AppLoading, ImagePicker } from 'expo';
+import { Asset, AppLoading, ImagePicker, Permissions } from 'expo';
 import { Actions } from 'react-native-router-flux';
 
 const DEVICE_DIMENSIONS = Dimensions.get('window');
 
 class Home extends React.Component {
-	state = {
-         userImage: null,
-         isReady: false,
-    };
+    constructor(props){
+        super(props);
+        this.state = {
+            userImage: null,
+            isReady: false,
+        };
+    }
 
     render() {
     	var { userImage } = this.state;
@@ -76,8 +79,10 @@ class Home extends React.Component {
 
 
     findCoordinates = (arr) =>{
+        // console.log(arr);
 
     	lat = arr["GPSLatitude"];
+        console.log(lat);
     	latRef = arr["GPSLatitudeRef"];
     	long = arr["GPSLongitude"];
     	longRef = arr["GPSLongitudeRef"];
@@ -85,7 +90,7 @@ class Home extends React.Component {
     		Alert.alert('Photo Selection Invalid', 'No GPS info attached to photo.');
     		}else{
     			if (long==null){
-    				Alert.alert('Photo Selection Invalid', 'No GPS tag attached.');
+    				Alert.alert('Photo Selection Invalid', 'No GPS info attached to photo.');
     			}
     		else{
     			if (latRef == "S" && lat>=0){
@@ -96,20 +101,20 @@ class Home extends React.Component {
     				long *= -1;
     			}
 
-    			Actions.mapscreen({ latitude: lat, longitude:long, });
+    			Actions.maplaunchscreen({ destLatitude: lat, destLongitude:long, });
     		}
     	}
     }
 
 
     _pickImage = async () => {
+        
     	let result = await ImagePicker.launchImageLibraryAsync({
-    		aspect: [4, 3],
     		exif: true,
     	});
 
     	if (!result.cancelled) {
-    		this.setState({ userImage: result.uri});
+    		this.setState({ userImage: result.uri });
     		this.findCoordinates(result.exif);
     	}
 

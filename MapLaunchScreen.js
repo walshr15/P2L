@@ -6,21 +6,24 @@ import getDirections from 'react-native-google-maps-directions';
 
 const DEVICE_DIMENSIONS = Dimensions.get('window');
 
-class MapScreen extends React.Component {
-	state = {
-		latitude: '', longitude: '',
-		userLatitude:'', userLongitude:'',
+class MapLaunchScreen extends React.Component {
+	constructor(props){
+		super(props);
+		state = {
+			destLatitude: '', destLongitude: '',
+			userLatitude:'', userLongitude:'',
+		}
 	}
 
 	handleGetDirections = () => {
     const data = {
        source: {
-        latitude: this.props.userLatitude,
-        longitude: this.props.userLongitude,
+        latitude: this.state.userLatitude,
+        longitude: this.state.userLongitude,
       },
       destination: {
-        latitude: this.props.latitude,
-        longitude: this.props.longitude,
+        latitude: this.props.destLatitude,
+        longitude: this.props.destLongitude,
       },
       params: [
         {
@@ -53,7 +56,7 @@ class MapScreen extends React.Component {
 				         source={require('./assets/images/p2lsmaller.png')} />
 				   <Text> </Text>	     
 				   <Text style={{fontSize: 8, margin: 8}}>
-				     Photo was taken at ({this.props.latitude}, {this.props.longitude}).
+				     Photo was taken at ({this.props.destLatitude}, {this.props.destLongitude}).
 				     Make sure that you have an active internet connection and to turn on location services for directions!
 				   </Text>
 				   <Text> </Text>
@@ -69,7 +72,7 @@ class MapScreen extends React.Component {
     		   <Text> </Text>	
     		   <Text> </Text>     
     		   <Text style={{margin: 8}}>
-    		     Photo was taken at ({this.props.latitude}, {this.props.longitude}).
+    		     Photo was taken at ({this.props.destLatitude}, {this.props.destLongitude}).
     		     Make sure that you have an active internet connection and to turn on location services for directions!
     		   </Text>
     		   <Text> </Text> 
@@ -88,8 +91,8 @@ class MapScreen extends React.Component {
 		}
 
 		let location = await Location.getCurrentPositionAsync({});
-		this.props.userLatitude = location.coords.latitude;
-		this.props.userLongitude = location.coords.longitude;		
+		this.setState({ userLatitude: location.coords.latitude});		
+		this.setState({ userLongitude: location.coords.longitude});	
 
 		
 	};
@@ -112,4 +115,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default MapScreen;
+export default MapLaunchScreen;

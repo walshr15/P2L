@@ -2,7 +2,7 @@
   "expo": {
   	"name": "Photo2Location",
   	"description": "Final year project - Photo2Location. An application that allows opening a photo in that app, and then the app displays the location of the photo on a map, and guides you there.",
-    "sdkVersion": "25.0.0",
+    "sdkVersion": "27.0.0",
     "slug": "photo2location",
     "version": "1.0.0",
     "platforms": ["ios", "android"],

@@ -4,7 +4,7 @@ import { ImagePicker } from 'expo';
 import { Router, Scene} from 'react-native-router-flux';
 
 import Home from './Home';
-import MapScreen from './MapScreen';
+import MapLaunchScreen from './MapLaunchScreen';
 
 
 class App extends React.Component {
@@ -13,7 +13,7 @@ class App extends React.Component {
 			<Router>
 			  <Scene key = 'root'>
 			    <Scene key='home' component={Home} title='Home'/>
-			    <Scene key='mapscreen' component={MapScreen} title='Photo Location'/>
+			    <Scene key='maplaunchscreen' component={MapLaunchScreen} title='Photo Location'/>
 			    </Scene>
 			</Router>
 		);
